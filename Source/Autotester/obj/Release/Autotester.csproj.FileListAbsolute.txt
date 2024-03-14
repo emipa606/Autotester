@@ -1,0 +1,8 @@
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Autotester\1.4\Assemblies\Autotester.dll
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Autotester\Source\Autotester\obj\Release\Autotester.csproj.AssemblyReference.cache
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Autotester\Source\Autotester\obj\Release\Autotester.GeneratedMSBuildEditorConfig.editorconfig
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Autotester\Source\Autotester\obj\Release\Autotester.AssemblyInfoInputs.cache
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Autotester\Source\Autotester\obj\Release\Autotester.AssemblyInfo.cs
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Autotester\Source\Autotester\obj\Release\Autotester.csproj.CoreCompileInputs.cache
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Autotester\Source\Autotester\obj\Release\Autotester.dll
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\Autotester\1.5\Assemblies\Autotester.dll
