@@ -1,4 +1,4 @@
-# [Autotester]()
+# [Autotester](https://steamcommunity.com/sharedfiles/filedetails/?id=3497629017)
 
 ![Image](https://i.imgur.com/iCj5o7O.png)
 
@@ -35,4 +35,6 @@ This will contain English translation-data for all Defs as a template for other 
 -  If you have the solution for a problem, please post it to the GitHub repository.
 -  Use [RimSort](https://github.com/RimSort/RimSort/releases/latest) to sort your mods
 
+ 
 
+[![Image](https://img.shields.io/github/v/release/emipa606/Autotester?label=latest%20version&style=plastic&labelColor=0070cd&color=white)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3497629017) | tags:  automatic testing
