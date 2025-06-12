@@ -4,10 +4,9 @@ using Verse;
 
 namespace Autotester;
 
-[StaticConstructorOnStartup]
-public static class Main
+public class Main : Mod
 {
-    static Main()
+    public Main(ModContentPack content) : base(content)
     {
         new Harmony("Mlie.Autotester").PatchAll(Assembly.GetExecutingAssembly());
     }

@@ -1,4 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using HarmonyLib;
 using RimWorld;
 using Verse;
@@ -12,11 +16,84 @@ public static class Map_MapPostTick
     private static bool optionsShown;
     private static bool closeModOptions;
     private static bool logShown;
+    private static List<Thing> allSpawnedThings;
+    private static int currentThingIndexSelected;
 
     public static void Postfix()
     {
+        ModContentPack modBeingTested;
         if (defsLoaded)
         {
+            if (allSpawnedThings == null)
+            {
+                modBeingTested = LoadedModManager.RunningMods.Last();
+                allSpawnedThings = Find.CurrentMap.listerThings.AllThings
+                    .Where(thing => thing.def.modContentPack == modBeingTested).ToList();
+                if (allSpawnedThings.Count == 0)
+                {
+                    Log.Message($"[Autotester]: No valid items found on the map from {modBeingTested.Name}.");
+                    return;
+                }
+            }
+
+            if (GenTicks.TicksGame < 200 || GenTicks.TicksGame % 5 != 0)
+            {
+                return;
+            }
+
+            if (allSpawnedThings.Count <= currentThingIndexSelected)
+            {
+                modBeingTested = LoadedModManager.RunningMods.Last();
+                var defInjectMethodInfo =
+                    AccessTools.Method(typeof(TranslationFilesCleaner), "CleanupDefInjectionsForDefType");
+                var folderPath = Path.Combine(modBeingTested.RootDir, "Source", "TranslationTemplate");
+                var dir = new DirectoryInfo(folderPath);
+                var mod = modBeingTested.ModMetaData;
+                Log.Message($"[Autotester]: Generating translation template to folder {dir.FullName}.");
+                if (!dir.Exists)
+                {
+                    dir.Create();
+                }
+
+                var files = dir.GetFiles("*.xml", SearchOption.AllDirectories);
+                foreach (var langFile in files)
+                {
+                    try
+                    {
+                        langFile.Delete();
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error($"Could not delete {langFile.Name}: {ex}");
+                    }
+                }
+
+                foreach (var defType in GenDefDatabase.AllDefTypesWithDatabases())
+                {
+                    try
+                    {
+                        defInjectMethodInfo.Invoke(null, [defType, dir.FullName, mod]);
+                    }
+                    catch (Exception ex2)
+                    {
+                        Log.Error($"Could not process def-injections for type {defType.Name}: {ex2}");
+                    }
+                }
+
+                Log.Message("[Autotester]: Nothing more to test, shutting down.");
+                Process.GetCurrentProcess().Kill();
+                return;
+            }
+
+            Find.Selector.ClearSelection();
+            var thing = allSpawnedThings[currentThingIndexSelected];
+            currentThingIndexSelected++;
+            if (thing is not { Spawned: true })
+            {
+                return;
+            }
+
+            Find.Selector.Select(thing);
             return;
         }
 
@@ -32,10 +109,11 @@ public static class Map_MapPostTick
             return;
         }
 
-        var modBeingTested = LoadedModManager.RunningMods.Last();
+        modBeingTested = LoadedModManager.RunningMods.Last();
         if (modBeingTested == null)
         {
             defsLoaded = true;
+            allSpawnedThings = [];
             Log.Message("[Autotester]: Cannot find any mod.");
             return;
         }
@@ -99,6 +177,7 @@ public static class Map_MapPostTick
         if (!modBeingTested.AllDefs.Any())
         {
             Log.Message($"[Autotester]: {modBeingTested.Name} does not have anything to spawn.");
+            allSpawnedThings = [];
             return;
         }
 

@@ -1,5 +1,10 @@
 {
   "Continued": false,
-  "CanAdd": "",
-  "CanRemove": ""
+  "CanAdd": "0",
+  "CanRemove": "0",
+  "LastXmlCleaning": "2025-06-12T14:25:57.7218265+02:00",
+  "SocialImageSet": true,
+  "FundingSet": true,
+  "SearchTags": " automatic testing",
+  "PreviewVersion": "1.6"
 }

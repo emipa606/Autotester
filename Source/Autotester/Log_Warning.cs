@@ -1,10 +1,11 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using HarmonyLib;
 using Verse;
 
 namespace Autotester;
 
-[HarmonyPatch(typeof(Log), "Warning", typeof(string))]
+[HarmonyPatch(typeof(Log), nameof(Log.Warning))]
 public static class Log_Warning
 {
     public static void Prefix(ref string text)
@@ -18,6 +19,11 @@ public static class Log_Warning
             }
         }
 
+        if (text.Contains("Scatterer"))
+        {
+            return;
+        }
+
         text = $"[WARNING]: {text}";
     }
 
@@ -25,7 +31,7 @@ public static class Log_Warning
     {
         if (text.StartsWith("[WARNING]"))
         {
-            Root.Shutdown();
+            Process.GetCurrentProcess().Kill();
         }
     }
 }

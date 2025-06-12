@@ -1,0 +1,4 @@
+# Changelog for Autotester
+
+1.6.1 - First steam publish
+
