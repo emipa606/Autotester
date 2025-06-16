@@ -6,6 +6,8 @@ I made this to ease my testing of mods before publishing. A few people asked abo
 If you are not a modder this is probably not of any use to you and for most modders the [Spawn Mod Content](https://steamcommunity.com/workshop/filedetails/?id=2922590693)-mod should be enough for testing.
 However if you have a lot of mods, it might help with automatic testing of these mods.
 
+### How to use
+
 
 
 - Populate the mod-list outside of the game, with the mod you want to test at the last place in the mod-list
