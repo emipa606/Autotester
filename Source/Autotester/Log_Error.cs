@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using HarmonyLib;
+using UnityEngine;
 using Verse;
+using Debug = UnityEngine.Debug;
 
 namespace Autotester;
 
@@ -32,6 +34,7 @@ public static class Log_Error
             return;
         }
 
+        Debug.LogError(StackTraceUtility.ExtractStackTrace());
         Process.GetCurrentProcess().Kill();
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Linq;
 using HarmonyLib;
+using UnityEngine;
 using Verse;
+using Debug = UnityEngine.Debug;
 
 namespace Autotester;
 
@@ -29,9 +31,12 @@ public static class Log_Warning
 
     public static void Postfix(string text)
     {
-        if (text.StartsWith("[WARNING]"))
+        if (!text.StartsWith("[WARNING]"))
         {
-            Process.GetCurrentProcess().Kill();
+            return;
         }
+
+        Debug.LogWarning(StackTraceUtility.ExtractStackTrace());
+        Process.GetCurrentProcess().Kill();
     }
 }

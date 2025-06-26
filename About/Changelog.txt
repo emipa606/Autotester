@@ -1,5 +1,8 @@
 # Changelog for Autotester
 
+1.6.4 - Now also includes the last stacktrace in the log before stopping the process
+
+
 1.6.3 - Added 'Cannot draw radius ring of radius' as allowed error as its due to being on a small map
 
 
