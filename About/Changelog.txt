@@ -1,5 +1,8 @@
 # Changelog for Autotester
 
+1.6.6 - Actually include the updated assembly as wel
+
+
 1.6.5 - Added logging of items being selected
 
 
