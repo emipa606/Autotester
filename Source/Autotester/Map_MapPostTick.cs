@@ -93,7 +93,6 @@ public static class Map_MapPostTick
                 return;
             }
 
-            Log.Message($"[Autotester]: Selecting {thing.Label} ({thing.def.defName}).");
             Find.Selector.Select(thing);
             return;
         }
