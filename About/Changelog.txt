@@ -1,5 +1,8 @@
 # Changelog for Autotester
 
+1.6.5 - Added logging of items being selected
+
+
 1.6.4 - Now also includes the last stacktrace in the log before stopping the process
 
 
