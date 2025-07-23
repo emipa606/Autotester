@@ -21,7 +21,7 @@ public static class Log_Warning
             }
         }
 
-        if (text.Contains("Scatterer") || text.Contains("SoS2 compatibility will happen soon"))
+        if (text.Contains("Scatterer") || text.Contains("SoS2 compatibility will happen soon") || text.StartsWith("Parsed "))
         {
             return;
         }

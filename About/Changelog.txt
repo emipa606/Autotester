@@ -1,5 +1,8 @@
 # Changelog for Autotester
 
+1.6.8 - Also ignores the 'Parsed X as an int' informational messages, not really warnings either
+
+
 1.6.7 - Ignores the warning message from SRTS about sos2 integration (its not a warning)
 
 
