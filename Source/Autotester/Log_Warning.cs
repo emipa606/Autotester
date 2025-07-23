@@ -21,7 +21,7 @@ public static class Log_Warning
             }
         }
 
-        if (text.Contains("Scatterer"))
+        if (text.Contains("Scatterer") || text.Contains("SoS2 compatibility will happen soon"))
         {
             return;
         }

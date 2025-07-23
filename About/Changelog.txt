@@ -1,5 +1,8 @@
 # Changelog for Autotester
 
+1.6.7 - Ignores the warning message from SRTS about sos2 integration (its not a warning)
+
+
 1.6.6 - Actually include the updated assembly as wel
 
 
