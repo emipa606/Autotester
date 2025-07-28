@@ -1,5 +1,8 @@
 # Changelog for Autotester
 
+1.6.9 - Will now autogenerate translation-report and auto-open it on translation-errors
+
+
 1.6.8 - Also ignores the 'Parsed X as an int' informational messages, not really warnings either
 
 
