@@ -18,7 +18,8 @@ public static class Log_Error
         "Could not generate a pawn after",
         "Pawn generation error",
         "Error while generating pawn",
-        "coverage has duplicate items"
+        "coverage has duplicate items",
+        "wipeCategories has duplicate categories"
     ];
 
     public static void Prefix(ref string text, out bool __state)

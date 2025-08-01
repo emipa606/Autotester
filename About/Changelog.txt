@@ -1,5 +1,8 @@
 # Changelog for Autotester
 
+1.6.10 - Added exclusion for jecstools bug
+
+
 1.6.9 - Will now autogenerate translation-report and auto-open it on translation-errors
 
 
