@@ -1,6 +1,6 @@
 # [Autotester](https://steamcommunity.com/sharedfiles/filedetails/?id=3497629017)
 
-![Image](https://i.postimg.cc/PJc4kLbg/Self-Info.png)
+![Image](https://img.litet.net/logos/Self-Info.png)
 
 I made this to ease my testing of mods before publishing. A few people asked about it so I decided to publish it. 
 If you are not a modder this is probably not of any use to you and for most modders the [Spawn Mod Content](https://steamcommunity.com/workshop/filedetails/?id=2922590693)-mod should be enough for testing.
@@ -25,7 +25,11 @@ All warnings and errors will have a [Warning] or [Error] prefix in the log to fi
 It will also create a TranslationTemplate folder in the Source-folder of the mod.
 This will contain English translation-data for all Defs as a template for other languages.
 
-![Image](https://i.postimg.cc/cC6mj7Y4/Self-Reporting-Issues.png)
+Some errors and warnings are ignored and you can add more by modifying the mod-config file.
+The file contains the builtin exclusions and can be found in the mod config-folder, filename ending with "Autotester.xml".
+https://ludeon.com/forums/index.php?topic=50995.0
+
+![Image](https://img.litet.net/logos/Self-ReportingIssues.png)
 
 
 
@@ -39,4 +43,4 @@ This will contain English translation-data for all Defs as a template for other 
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/Autotester?label=latest%20version&style=plastic&labelColor=0070cd&color=white)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3497629017) | tags:  automatic testing
+[![Image](https://img.shields.io/github/v/release/emipa606/Autotester?label=latest%20version&style=plastic&labelColor=0070cd&color=white)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3497629017) | tags: automatic testing

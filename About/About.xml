@@ -28,7 +28,7 @@
     <li>brrainz.harmony</li>
     <li>Mlie.SpawnModContent</li>
   </loadAfter>
-  <description>[img]https://i.postimg.cc/PJc4kLbg/Self-Info.png[/img]
+  <description>[img]https://img.litet.net/logos/Self-Info.png[/img]
 
 I made this to ease my testing of mods before publishing. A few people asked about it so I decided to publish it. 
 If you are not a modder this is probably not of any use to you and for most modders the [url=https://steamcommunity.com/workshop/filedetails/?id=2922590693]Spawn Mod Content[/url]-mod should be enough for testing.
@@ -50,18 +50,22 @@ All warnings and errors will have a [Warning] or [Error] prefix in the log to fi
 It will also create a TranslationTemplate folder in the Source-folder of the mod.
 This will contain English translation-data for all Defs as a template for other languages.
 
+Some errors and warnings are ignored and you can add more by modifying the mod-config file.
+The file contains the builtin exclusions and can be found in the mod config-folder, filename ending with "Autotester.xml".
+https://ludeon.com/forums/index.php?topic=50995.0
+
 [table]
 	[tr]
-		[td][url=https://discord.gg/h5TY6DA][img]https://i.postimg.cc/T1h9SjbF/Discord.png[/img][/url][/td]
-		[td][url=https://github.com/emipa606/Autotester][img]https://i.postimg.cc/fykKF7X4/Github.png[/img][/url][/td]
+		[td][url=https://discord.gg/h5TY6DA][img]https://img.litet.net/logos/Discord.png[/img][/url][/td]
+		[td][url=https://github.com/emipa606/Autotester][img]https://img.litet.net/logos/Github.png[/img][/url][/td]
     [/tr]
     [tr]
-        [td][img]https://i.postimg.cc/MHXD40RW/Safe-To-Add.png[/img][/td]
-        [td][img]https://i.postimg.cc/sx1c8PSf/Safe-To-Remove.png[/img][/td]
+        [td][img]https://img.litet.net/logos/SafeToAdd.png[/img][/td]
+        [td][img]https://img.litet.net/logos/SafeToRemove.png[/img][/td]
     [/tr]
 [/table]
 
-[img]https://i.postimg.cc/cC6mj7Y4/Self-Reporting-Issues.png[/img]
+[img]https://img.litet.net/logos/Self-ReportingIssues.png[/img]
 [list]
 [*] See if the the error persists if you just have this mod and its requirements active.
 [*] If not, try adding your other mods until it happens again.
@@ -72,6 +76,6 @@ This will contain English translation-data for all Defs as a template for other 
 [*] Use [url=https://github.com/RimSort/RimSort/releases/latest]RimSort[/url] to sort your mods
 [/list] 
 
-[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3497629017][img]https://img.shields.io/github/v/release/emipa606/Autotester?label=latest%20version&amp;style=plastic&amp;labelColor=0070cd&amp;color=white[/img][/url] | tags:  automatic testing</description>
-  <modVersion IgnoreIfNoMatchingField="True">1.6.11</modVersion>
+[url=https://steamcommunity.com/sharedfiles/filedetails/changelog/3497629017][img]https://img.shields.io/github/v/release/emipa606/Autotester?label=latest%20version&amp;style=plastic&amp;labelColor=0070cd&amp;color=white[/img][/url] | tags: automatic testing</description>
+  <modVersion IgnoreIfNoMatchingField="True">1.6.12</modVersion>
 </ModMetaData>

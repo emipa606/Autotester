@@ -1,5 +1,8 @@
 # Changelog for Autotester
 
+1.6.12 - Fixed spawner-call after refactoring
+
+
 1.6.11 - Added config-file where warnings and errors can be added to ignore them during testing.
 
 

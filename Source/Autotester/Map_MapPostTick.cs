@@ -168,9 +168,10 @@ public static class Map_MapPostTick
         defsLoaded = true;
 
         var autoTestMethod =
-            AccessTools.Method("SpawnModContent.DebugAutotests:SpawnModDefs", [typeof(ModContentPack)]);
+            AccessTools.Method("SpawnModContent.DebugAutotests:spawnModDefs", [typeof(ModContentPack)]);
         if (autoTestMethod == null)
         {
+            Log.Message("[Autotester]: Could not find spawnModDefs method, cannot run autotests.");
             return;
         }
 
