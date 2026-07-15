@@ -1,5 +1,8 @@
 # Changelog for Autotester
 
+1.6.13 - Added optional break for translation issues to be able to test mods with dependencies with translation issues
+
+
 1.6.12 - Fixed spawner-call after refactoring
 
 

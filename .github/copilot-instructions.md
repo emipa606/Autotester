@@ -1,35 +1,73 @@
-# Autotester GitHub Copilot Instructions
+# GitHub Copilot Instructions for RimWorld Modding: Autotester
 
 ## Mod Overview and Purpose
-**Autotester** is a utility mod designed primarily for RimWorld mod developers to facilitate the testing process before mods are published. It is particularly useful for modders who work with numerous mods, although for most developers, the "Spawn Mod Content" mod suffices for general testing. The key advantage of Autotester is its capability to automate testing processes, which can expedite the development and release cycles.
+
+The **Autotester** mod is designed to facilitate the testing process for modders before they publish their RimWorld mods. It automates several steps that would usually require manual intervention, thereby speeding up the testing cycle. Although it's mainly beneficial for modders handling a large number of mods, it can benefit any modder looking to streamline their testing procedures. This mod might not be directly useful for regular players or modders who find existing solutions like the Spawn Mod Content mod sufficient for their needs.
 
 ## Key Features and Systems
-- **Automated Test Map Loading:** The mod defines a smaller test map (100x100 tiles) to facilitate faster map loading times when testing mods.
-- **Mod Configuration Testing:** Automatically opens and closes any mod configurations related to the mod you are testing.
-- **Content Spawning:** Utilizes the "Spawn Mod Content" mod to automatically spawn all content related to the mod being tested.
-- **Item Selection Test:** Iteratively selects each item spawned, aiding developers in verifying proper functionality without manual item clicking.
-- **Error and Warning Logging:** Stops the game immediately upon encountering errors or warnings, which are prefixed with symbols in the log for easy identification.
-- **Translation Template Generation:** Generates an English translation template for all Defs present in the mod, saved in the `TranslationTemplate` folder within the mod's source folder, which can be used for creating translations in other languages.
+
+1. **Automatic Mod Testing**: Autotester automatically tests mods by loading them in a controlled test environment. It configures the mod list to prioritize the mod under test.
+
+2. **Quick Load Test Map**: It launches RimWorld with a small (100x100) test map when using the `-quicktest` parameter, ensuring faster load times.
+
+3. **Config Automation**: Opens and closes the configuration settings of the test mod, integrating seamlessly with other installed mods.
+
+4. **Item Spawning and Selection**: Utilizes the Spawn Mod Content mod to spawn all mod-related content and iteratively selects each item to verify correctness.
+
+5. **Error and Warning Logging**: Logs any warnings or errors with identifiable prefixes in the log. The game exits immediately on encountering these issues unless specified otherwise in the mod config.
+
+6. **Translation Template Generation**: Automatically generates an English translation template for all Defs, aiding in the development of multi-language support for the mod.
 
 ## Coding Patterns and Conventions
-- **Class Design:** Use `public static class` where applicable to define utility functions, such as in `Log_Error` and `Log_Warning`.
-- **Inheritance:** The main mod entry class, `Main`, inherits from the `Mod` class which is conventional in RimWorld modding.
-- **Consistency:** Follow consistent naming conventions, preferring PascalCase for methods and classes.
-- **Error Handling:** Design methods to capture and handle errors gracefully, prioritizing user feedback through logs.
+
+- **File Structure**: The mod contains five C# files, each corresponding to a specific functionality within the mod.
+
+- **Namespace Usage**: Utilize namespaces to organize code logically and maintain readability.
+
+- **Naming Conventions**: Follow C# coding standards for naming conventions. Classes use PascalCase, methods use camelCase, and constants should be in uppercase.
+
+- **Comments and Documentation**: Where applicable, use XML documentation comments to describe classes and methods to facilitate smoother collaboration and code comprehension.
 
 ## XML Integration
-- **Defs and Data:** Autotester relies on RimWorld's XML data structure for defining game content. Any additions or changes to mods should be properly defined in XML Def files to ensure compatibility with Autotester.
-- **Localization:** Resources such as `Def` translations use XML to manage multilingual support. Autotester assists mod developers by generating a translation template for all present Defs.
+
+Although this mod does not directly include any XML files within the version provided, it generates a translation template in a `TranslationTemplate` folder within the source directory. Modders can edit this or create additional XML configuration files as needed.
 
 ## Harmony Patching
-- Autotester leverages Harmony patches for game behavior modification without directly altering the game's core code.
-- For example, `Map_MapPostTick` and `Root_Play_SetupForQuickTestPlay` likely include Harmony patches to intercept and modify game logic during the map post-tick and quick test setup phases respectively.
+
+**Harmony** is used for patching RimWorld's functions to introduce new features or modify existing behaviors without altering the original game files:
+
+- **Postfix and Prefix Attributes**: These are used within classes like `Log_Warning` and `Log_Error` to intercept and handle specific methods in RimWorld's codebase.
+
+- **Patching Techniques**: Employ the `Postfix` technique to execute code after a method runs, ensuring the main functionality is completed beforehand. Use `Prefix` to execute code before the original method, often for validation or setup.
+
+- **Sample Classes**: 
+  - `Log_Warning`: Intercepts warning logs and prefixes them for easy identification.
+  - `Log_Error`: Extends error logging with custom handling and instant game termination based on conditions.
 
 ## Suggestions for Copilot
-- **Automate Testing Scripts:** Suggest automations such as additional Harmony patches for common scenarios or complex test sequences.
-- **Error Logging Enhancements:** Extend error and warning logging to improve insights, such as including stack traces or additional context information.
-- **Map Customization:** Offer ideas for varying map parameters (e.g., terrain, resources) to test different mod interactions.
-- **Performance Monitoring:** Implement methods for tracking and reporting mod performance metrics during testing.
-- **XML Parsing Helpers:** Develop utility functions to streamline reading and writing complex XML data structures.
 
-By adhering to these instructions and leveraging the Copilot suggestions, developers can enhance their mod testing workflows, streamline error detection and reporting, and facilitate the creation of robust, reliable RimWorld mods.
+1. **Repeated Structures**: Utilize Copilot to complete repetitive structures such as loops for item selection and spawning, ensuring consistent syntax and reducing errors.
+
+2. **Error Handling**: Implement common error-handling patterns quickly by suggesting inline comments that describe typical exceptions.
+
+3. **Documentation**: Generate standard XML documentation templates for methods and classes to maintain clarity and assist future contributors.
+
+4. **Method Signatures**: Offer suggestions for method signatures when patching RimWorld functions, ensuring correct alignment with original method parameters.
+
+5. **Code Optimization**: Propose optimizations for nested loops or complex conditions that iterate over game objects or configurations.
+
+By following these guidelines, contributions to the Autotester mod are expected to align with the mod's existing structure while leveraging the full potential of GitHub Copilot for efficient development.
+
+## Project Solution Guidelines
+- Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
+- Use these in-solution XML files as the primary files for reference and modification.
+- The `.github/copilot-instructions.md` file is included in the solution under the `.github` solution folder, so it should be read/modified from within the solution instead of using paths outside the solution. Update this file once only, as it and the parent-path solution reference point to the same file in this workspace.
+- When making functional changes in this mod, ensure the documented features stay in sync with implementation; use the in-solution `.github` copy as the primary file.
+- In the solution is also a project called Assembly-CSharp, containing a read-only version of the decompiled game source, for reference and debugging purposes.
+- For any new documentation, update this copilot-instructions.md file rather than creating separate documentation files.
+
+
+## Hard rules (must follow)
+- Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
+- Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+

@@ -21,6 +21,13 @@ public static class Map_MapPostTick
 
     public static void Postfix()
     {
+        if (Log_Warning.PendingDialog != null)
+        {
+            var dialog = Log_Warning.PendingDialog;
+            Log_Warning.PendingDialog = null;
+            dialog();
+        }
+
         ModContentPack modBeingTested;
         if (defsLoaded)
         {
