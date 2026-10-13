@@ -43,4 +43,4 @@ https://ludeon.com/forums/index.php?topic=50995.0
 
  
 
-[![Image](https://img.shields.io/github/v/release/emipa606/Autotester?label=latest%20version&style=plastic&labelColor=0070cd&color=white)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3497629017) | tags: automatic testing
+[![Image](https://img.shields.io/github/v/release/emipa606/Autotester?label=latest%20version&style=plastic&labelColor=0070cd&color=white)](https://steamcommunity.com/sharedfiles/filedetails/changelog/3497629017) | automatic testing

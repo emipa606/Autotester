@@ -15,9 +15,7 @@ public static class Log_Error
         __state = false;
         var errorText = text;
 
-        text = $"[ERROR]: {text}";
-
-        if (Main.AllowedErrors.Any(allowedString => errorText.Contains(allowedString)))
+        if (Main.AllowedErrors.Any(errorText.Contains))
         {
             return;
         }

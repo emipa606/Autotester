@@ -2,61 +2,56 @@
 
 ## Mod Overview and Purpose
 
-The **Autotester** mod is designed to facilitate the testing process for modders before they publish their RimWorld mods. It automates several steps that would usually require manual intervention, thereby speeding up the testing cycle. Although it's mainly beneficial for modders handling a large number of mods, it can benefit any modder looking to streamline their testing procedures. This mod might not be directly useful for regular players or modders who find existing solutions like the Spawn Mod Content mod sufficient for their needs.
+**Mod Name:** Autotester  
+**Author:** Mlie  
+**PackageId:** Mlie.Autotester
+
+Autotester is a RimWorld mod designed to streamline the testing process for mod developers before publishing their mods. The tool automates many aspects of testing by utilizing a sequence of predefined actions and interactions within the game, significantly reducing the manual effort required. This mod is particularly useful for developers who manage and test a large collection of mods. While the functionality is similar to the "Spawn Mod Content" mod, Autotester provides extended support for automated batch testing, which can be a valuable resource during development.
 
 ## Key Features and Systems
 
-1. **Automatic Mod Testing**: Autotester automatically tests mods by loading them in a controlled test environment. It configures the mod list to prioritize the mod under test.
-
-2. **Quick Load Test Map**: It launches RimWorld with a small (100x100) test map when using the `-quicktest` parameter, ensuring faster load times.
-
-3. **Config Automation**: Opens and closes the configuration settings of the test mod, integrating seamlessly with other installed mods.
-
-4. **Item Spawning and Selection**: Utilizes the Spawn Mod Content mod to spawn all mod-related content and iteratively selects each item to verify correctness.
-
-5. **Error and Warning Logging**: Logs any warnings or errors with identifiable prefixes in the log. The game exits immediately on encountering these issues unless specified otherwise in the mod config.
-
-6. **Translation Template Generation**: Automatically generates an English translation template for all Defs, aiding in the development of multi-language support for the mod.
+- **Automated Mod Testing:** Load your target mod last in the mod list, and Autotester will perform a suite of tests automatically upon startup.
+- **Quicktest Initialization:** By starting RimWorld with the `-quicktest` parameter, the mod will load a smaller test map (100x100) to decrease loading times.
+- **Configuration Management:** Opens and closes test-mod configuration to refresh states.
+- **Item Spawning:** Uses the Spawn Mod Content to generate all items, facilitating tests across multiple content types.
+- **Error Handling:** Instant shutdown on encountering warnings or errors, with a prefix for easy log identification.
+- **Translation Template Generation:** Automatically generates a translation template for all Defs in English, aiding multi-language support.
 
 ## Coding Patterns and Conventions
 
-- **File Structure**: The mod contains five C# files, each corresponding to a specific functionality within the mod.
-
-- **Namespace Usage**: Utilize namespaces to organize code logically and maintain readability.
-
-- **Naming Conventions**: Follow C# coding standards for naming conventions. Classes use PascalCase, methods use camelCase, and constants should be in uppercase.
-
-- **Comments and Documentation**: Where applicable, use XML documentation comments to describe classes and methods to facilitate smoother collaboration and code comprehension.
+- **Naming Conventions:** Follow standard C# conventions with PascalCase used for class names and methods, and camelCase for local variables and parameters.
+- **Modular Design:** Each test-related operation should be encapsulated in distinct methods or classes, ensuring single responsibility and making extensions easier.
+- **Comments and Documentation:** Code should be well-documented. Use XML comments for public methods to assist with IDE integrations.
 
 ## XML Integration
 
-Although this mod does not directly include any XML files within the version provided, it generates a translation template in a `TranslationTemplate` folder within the source directory. Modders can edit this or create additional XML configuration files as needed.
+- **Configuration File:** Modify the `Autotester.xml` located in the mod's config folder to manage error exclusions. This XML file defines specific warnings and errors that should be ignored during the automated tests.
+- While no XML defs are utilized in this mod beyond configuration, maintaining clear structure and readable nesting in XML files is critical.
 
 ## Harmony Patching
 
-**Harmony** is used for patching RimWorld's functions to introduce new features or modify existing behaviors without altering the original game files:
+The mod uses brrainz.Harmony to apply runtime modifications to existing game code for achieving comprehensive test coverage:
 
-- **Postfix and Prefix Attributes**: These are used within classes like `Log_Warning` and `Log_Error` to intercept and handle specific methods in RimWorld's codebase.
+- **Postfix Example:** 
+  - Employed predominantly to append additional logic after original method execution, like capturing log outputs or modifying outcomes.
+- **Prefix Example:**
+  - Used to alter the control flow before running an original method, such as preprocess checks or condition validations.
 
-- **Patching Techniques**: Employ the `Postfix` technique to execute code after a method runs, ensuring the main functionality is completed beforehand. Use `Prefix` to execute code before the original method, often for validation or setup.
-
-- **Sample Classes**: 
-  - `Log_Warning`: Intercepts warning logs and prefixes them for easy identification.
-  - `Log_Error`: Extends error logging with custom handling and instant game termination based on conditions.
+Ensure that when writing Harmony patches, you:
+- Avoid destructive modifications that could impact game integrity outside the scope of testing.
+- Properly handle exceptions to prevent mod crashes and save debugging time.
+- Utilize unique prefixes to minimize cross-mod interference and conflicts.
 
 ## Suggestions for Copilot
 
-1. **Repeated Structures**: Utilize Copilot to complete repetitive structures such as loops for item selection and spawning, ensuring consistent syntax and reducing errors.
+Given the mod’s technical requirements, Copilot can significantly assist with:
 
-2. **Error Handling**: Implement common error-handling patterns quickly by suggesting inline comments that describe typical exceptions.
+- **Code Templates:** Automating boilerplate code for Harmony patches and method declarations.
+- **Syntax Suggestions:** Providing quick autocomplete for frequently used RimWorld and Harmony functions, reducing potential typo-related errors.
+- **Logic Completion:** Generating loop and conditional logic based on natural language comments, which can expedite common patterns (e.g., sequential item processing).
+- **Documentation Help:** Auto-generating XML comments for public APIs, ensuring consistent documentation.
 
-3. **Documentation**: Generate standard XML documentation templates for methods and classes to maintain clarity and assist future contributors.
-
-4. **Method Signatures**: Offer suggestions for method signatures when patching RimWorld functions, ensuring correct alignment with original method parameters.
-
-5. **Code Optimization**: Propose optimizations for nested loops or complex conditions that iterate over game objects or configurations.
-
-By following these guidelines, contributions to the Autotester mod are expected to align with the mod's existing structure while leveraging the full potential of GitHub Copilot for efficient development.
+By following the aforementioned guidelines and using Copilot efficiently, developers can enhance code quality and speed up the modding process. Happy modding!
 
 ## Project Solution Guidelines
 - Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
@@ -70,4 +65,6 @@ By following these guidelines, contributions to the Autotester mod are expected 
 ## Hard rules (must follow)
 - Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
 - Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+- When mentioning SonarQube issues, automatically use the SonarQube MCP service to fetch and address issues instead of making inferred fixes without querying SonarQube first.
+- When mentioning the rimworld log, automatically use the Rimworld MCP service to fetch the log.
 

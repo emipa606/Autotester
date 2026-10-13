@@ -26,8 +26,6 @@ public static class Log_Warning
             }
         }
 
-        text = $"[WARNING]: {text}";
-
         if (text.Contains("Translation data for language"))
         {
             var saveLocation = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -51,7 +49,7 @@ public static class Log_Warning
             {
                 Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(
                     "Translation data warning detected. Continue the autotest anyway?",
-                    () => { Main.AllowedWarnings = Main.AllowedWarnings.Append(capturedText).ToArray(); },
+                    () => { Main.AllowedWarnings = [.. Main.AllowedWarnings, capturedText]; },
                     () =>
                     {
                         Debug.LogError("[[Autotest failed]]");
@@ -63,7 +61,7 @@ public static class Log_Warning
         }
 
         var warningText = text;
-        if (Main.AllowedWarnings.Any(allowedString => warningText.Contains(allowedString)))
+        if (Main.AllowedWarnings.Any(warningText.Contains))
         {
             return;
         }
